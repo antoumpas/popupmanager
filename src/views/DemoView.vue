@@ -1,25 +1,47 @@
 <template>
   <div class="grid responsive">
-    <div class="item-1 header">Header</div>
-    <div class="item-2 content">Content</div>
-    <div class="item-3 aside">Aside</div>
+    <header class="item-1 header">Header
+      <nav>
+        <ul>
+          <li>
+            <a href="http://google.com/">link 1</a>
+            <a href="#">link 2</a>
+          </li>
+        </ul>
+      </nav>
+    </header>
+    <main class="item-2 content">
+      Content <span>{{ timer }}s</span>
+    </main>
+    <aside class="item-3 aside">
+      Aside
+      <ul>
+        <li><a href="http://google.com">External link</a></li>
+      </ul>
+    </aside>
     <div class="item-4 footer">Footer</div>
   </div>
-  <popup
-    v-model="isModalOpen"
-    content="<div><h1>I'm a popup</h1><p>I have a body</p></div>"
-  ></popup>
+  <PopupManager></PopupManager>
 </template>
 
 <script>
-import Popup from "../components/Popup.vue";
+import PopupManager from "../components/PopupManager.vue";
+
 export default {
-  components: { Popup },
+  components: {
+    PopupManager,
+  },
   data() {
     return {
-      isModalOpen: true,
+      isModalOpen: false,
+      timer: 0,
     };
   },
+  mounted() {
+    setInterval(() => {
+      this.timer += 1;
+    }, 1000);
+  }
 };
 </script>
 
@@ -31,7 +53,7 @@ export default {
   font-size: 2em;
 }
 
-.grid > div {
+.grid > * {
   margin: 0.05em;
   border-width: 0.1em;
   border-style: solid;
@@ -75,15 +97,41 @@ export default {
 
 .header {
   grid-area: header;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.header nav ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.header nav a {
+  font-size: 1.5rem;
+  margin: 0.5rem;
 }
 
 .content {
   height: 2000px;
   grid-area: content;
+  display: flex;
+  justify-content: space-between;
 }
 
 .aside {
   grid-area: aside;
+}
+
+.aside ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.aside ul a {
+  font-size: 1rem;
+  margin: 0.5rem;
 }
 
 .footer {

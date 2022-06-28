@@ -1,48 +1,39 @@
 # popup-manager
 
-This template should help get you started developing with Vue 3 in Vite.
-
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+Vue.js app that manages marketing popups.
 
 ## Project Setup
+The app was tested with node v16.13
 
 ```sh
-npm install
+$ npm install
 ```
 
 ### Compile and Hot-Reload for Development
 
 ```sh
-npm run dev
+$ npm run dev
 ```
 
 ### Compile and Minify for Production
 
 ```sh
-npm run build
+$ npm run build
 ```
 
-### Run Unit Tests with [Vitest](https://vitest.dev/)
+## Running the app
 
-```sh
-npm run test:unit
-```
+The app consist of two parts, the popup management app which is responsible from managing the active popups stored in the database and a demo application where the active popups can be tested.
 
-### Run End-to-End Tests with [Cypress](https://www.cypress.io/)
+### Popup Management
 
-```sh
-npm run build
-npm run test:e2e # or `npm run test:e2e:ci` for headless testing
-```
+Create a popups list with the ability to create / edit / delete popups.
+This tool uses the [IndexedDb API](https://developer.mozilla.org/en-US/docs/Web/API/IndexedDB_API) to store the popups in the browser and comes with 2 predefined popups as an example.
 
-### Lint with [ESLint](https://eslint.org/)
+![Popup Management](PopupManagement.png)
 
-```sh
-npm run lint
-```
+### Demo Application
+
+This application tries to emulate a web page with some basic functionalities that will help testing the active popups.
+
+![Demo](Demo.png)

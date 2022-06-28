@@ -1,10 +1,14 @@
 <template>
-  <dialog ref="popup" class="popup">
+  <dialog @close="hideModal()" ref="popup" class="popup">
     <article class="popup__content">
       <header class="popup__header">
-        <button @click="hideModal">Close</button>
+        <slot name="header" v-bind="{hideModal}">
+          <button @click="hideModal">Close</button>
+        </slot>
       </header>
-      <main class="popup__main" v-html="content"></main>
+      <main class="popup__main">
+        <slot v-bind="{hideModal}"></slot>
+      </main>
     </article>
   </dialog>
 </template>
@@ -13,10 +17,6 @@
 export default {
   name: "popup",
   props: {
-    content: {
-      required: true,
-      type: String,
-    },
     modelValue: {
       required: true,
       type: Boolean,
